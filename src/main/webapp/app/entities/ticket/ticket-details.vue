@@ -31,6 +31,12 @@
             <span>{{ ticket.done }}</span>
           </dd>
           <dt>
+            <span v-text="t$('jhipsterDemoApp.ticket.newEntity')"></span>
+          </dt>
+          <dd>
+            <span>{{ ticket.newEntity }}</span>
+          </dd>
+          <dt>
             <span v-text="t$('jhipsterDemoApp.ticket.project')"></span>
           </dt>
           <dd>

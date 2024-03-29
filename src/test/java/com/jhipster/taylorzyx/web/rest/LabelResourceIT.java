@@ -35,6 +35,9 @@ class LabelResourceIT {
     private static final String DEFAULT_LABEL = "AAAAAAAAAA";
     private static final String UPDATED_LABEL = "BBBBBBBBBB";
 
+    private static final String DEFAULT_DESC = "AAAAAAAAAA";
+    private static final String UPDATED_DESC = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/labels";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -62,7 +65,7 @@ class LabelResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Label createEntity(EntityManager em) {
-        Label label = new Label().label(DEFAULT_LABEL);
+        Label label = new Label().label(DEFAULT_LABEL).desc(DEFAULT_DESC);
         return label;
     }
 
@@ -73,7 +76,7 @@ class LabelResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Label createUpdatedEntity(EntityManager em) {
-        Label label = new Label().label(UPDATED_LABEL);
+        Label label = new Label().label(UPDATED_LABEL).desc(UPDATED_DESC);
         return label;
     }
 
@@ -186,7 +189,9 @@ class LabelResourceIT {
             .jsonPath("$.[*].id")
             .value(hasItem(label.getId().intValue()))
             .jsonPath("$.[*].label")
-            .value(hasItem(DEFAULT_LABEL));
+            .value(hasItem(DEFAULT_LABEL))
+            .jsonPath("$.[*].desc")
+            .value(hasItem(DEFAULT_DESC));
     }
 
     @Test
@@ -208,7 +213,9 @@ class LabelResourceIT {
             .jsonPath("$.id")
             .value(is(label.getId().intValue()))
             .jsonPath("$.label")
-            .value(is(DEFAULT_LABEL));
+            .value(is(DEFAULT_LABEL))
+            .jsonPath("$.desc")
+            .value(is(DEFAULT_DESC));
     }
 
     @Test
@@ -232,7 +239,7 @@ class LabelResourceIT {
 
         // Update the label
         Label updatedLabel = labelRepository.findById(label.getId()).block();
-        updatedLabel.label(UPDATED_LABEL);
+        updatedLabel.label(UPDATED_LABEL).desc(UPDATED_DESC);
 
         webTestClient
             .put()
@@ -344,7 +351,7 @@ class LabelResourceIT {
         Label partialUpdatedLabel = new Label();
         partialUpdatedLabel.setId(label.getId());
 
-        partialUpdatedLabel.label(UPDATED_LABEL);
+        partialUpdatedLabel.label(UPDATED_LABEL).desc(UPDATED_DESC);
 
         webTestClient
             .patch()

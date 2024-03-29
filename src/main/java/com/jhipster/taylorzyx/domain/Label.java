@@ -27,6 +27,10 @@ public class Label implements Serializable {
     @Column("label")
     private String label;
 
+    @Size(min = 5)
+    @Column("jhi_desc")
+    private String desc;
+
     @Transient
     @JsonIgnoreProperties(value = { "project", "assignedTo", "labels" }, allowSetters = true)
     private Set<Ticket> tickets = new HashSet<>();
@@ -57,6 +61,19 @@ public class Label implements Serializable {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public String getDesc() {
+        return this.desc;
+    }
+
+    public Label desc(String desc) {
+        this.setDesc(desc);
+        return this;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public Set<Ticket> getTickets() {
@@ -115,6 +132,7 @@ public class Label implements Serializable {
         return "Label{" +
             "id=" + getId() +
             ", label='" + getLabel() + "'" +
+            ", desc='" + getDesc() + "'" +
             "}";
     }
 }

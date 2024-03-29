@@ -9,6 +9,7 @@
       "fieldType": "String"
     }
   ],
+  "incrementalChangelog": false,
   "name": "Project",
   "relationships": [],
   "searchEngine": "no"

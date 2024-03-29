@@ -8,6 +8,7 @@ export interface ITicket {
   description?: string | null;
   dueDate?: Date | null;
   done?: boolean | null;
+  newEntity?: string | null;
   project?: IProject | null;
   assignedTo?: IUser | null;
   labels?: ILabel[] | null;
@@ -20,6 +21,7 @@ export class Ticket implements ITicket {
     public description?: string | null,
     public dueDate?: Date | null,
     public done?: boolean | null,
+    public newEntity?: string | null,
     public project?: IProject | null,
     public assignedTo?: IUser | null,
     public labels?: ILabel[] | null,

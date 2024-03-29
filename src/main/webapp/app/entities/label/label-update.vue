@@ -28,6 +28,21 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="form-control-label" v-text="t$('jhipsterDemoApp.label.desc')" for="label-desc"></label>
+            <input
+              type="text"
+              class="form-control"
+              name="desc"
+              id="label-desc"
+              data-cy="desc"
+              :class="{ valid: !v$.desc.$invalid, invalid: v$.desc.$invalid }"
+              v-model="v$.desc.$model"
+            />
+            <div v-if="v$.desc.$anyDirty && v$.desc.$invalid">
+              <small class="form-text text-danger" v-for="error of v$.desc.$errors" :key="error.$uid">{{ error.$message }}</small>
+            </div>
+          </div>
+          <div class="form-group">
             <label v-text="t$('jhipsterDemoApp.label.ticket')" for="label-ticket"></label>
             <select
               class="form-control"

@@ -37,6 +37,9 @@ public class Ticket implements Serializable {
     @Column("done")
     private Boolean done;
 
+    @Column("new_entity")
+    private String newEntity;
+
     @Transient
     private Project project;
 
@@ -118,6 +121,19 @@ public class Ticket implements Serializable {
 
     public void setDone(Boolean done) {
         this.done = done;
+    }
+
+    public String getNewEntity() {
+        return this.newEntity;
+    }
+
+    public Ticket newEntity(String newEntity) {
+        this.setNewEntity(newEntity);
+        return this;
+    }
+
+    public void setNewEntity(String newEntity) {
+        this.newEntity = newEntity;
     }
 
     public Project getProject() {
@@ -215,6 +231,7 @@ public class Ticket implements Serializable {
             ", description='" + getDescription() + "'" +
             ", dueDate='" + getDueDate() + "'" +
             ", done='" + getDone() + "'" +
+            ", newEntity='" + getNewEntity() + "'" +
             "}";
     }
 }

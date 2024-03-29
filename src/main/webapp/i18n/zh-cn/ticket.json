@@ -22,6 +22,7 @@
       "description": "Description",
       "dueDate": "Due Date",
       "done": "Done",
+      "newEntity": "New Entity",
       "project": "Project",
       "assignedTo": "Assigned To",
       "label": "Label"

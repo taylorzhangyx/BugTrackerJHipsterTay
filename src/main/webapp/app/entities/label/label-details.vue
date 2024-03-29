@@ -13,6 +13,12 @@
             <span>{{ label.label }}</span>
           </dd>
           <dt>
+            <span v-text="t$('jhipsterDemoApp.label.desc')"></span>
+          </dt>
+          <dd>
+            <span>{{ label.desc }}</span>
+          </dd>
+          <dt>
             <span v-text="t$('jhipsterDemoApp.label.ticket')"></span>
           </dt>
           <dd>

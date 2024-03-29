@@ -10,14 +10,14 @@ public class LabelTestSamples {
     private static final AtomicLong longCount = new AtomicLong(random.nextInt() + (2 * Integer.MAX_VALUE));
 
     public static Label getLabelSample1() {
-        return new Label().id(1L).label("label1");
+        return new Label().id(1L).label("label1").desc("desc1");
     }
 
     public static Label getLabelSample2() {
-        return new Label().id(2L).label("label2");
+        return new Label().id(2L).label("label2").desc("desc2");
     }
 
     public static Label getLabelRandomSampleGenerator() {
-        return new Label().id(longCount.incrementAndGet()).label(UUID.randomUUID().toString());
+        return new Label().id(longCount.incrementAndGet()).label(UUID.randomUUID().toString()).desc(UUID.randomUUID().toString());
     }
 }

@@ -50,6 +50,9 @@ class TicketResourceIT {
     private static final Boolean DEFAULT_DONE = false;
     private static final Boolean UPDATED_DONE = true;
 
+    private static final String DEFAULT_NEW_ENTITY = "AAAAAAAAAA";
+    private static final String UPDATED_NEW_ENTITY = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/tickets";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -80,7 +83,12 @@ class TicketResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Ticket createEntity(EntityManager em) {
-        Ticket ticket = new Ticket().title(DEFAULT_TITLE).description(DEFAULT_DESCRIPTION).dueDate(DEFAULT_DUE_DATE).done(DEFAULT_DONE);
+        Ticket ticket = new Ticket()
+            .title(DEFAULT_TITLE)
+            .description(DEFAULT_DESCRIPTION)
+            .dueDate(DEFAULT_DUE_DATE)
+            .done(DEFAULT_DONE)
+            .newEntity(DEFAULT_NEW_ENTITY);
         return ticket;
     }
 
@@ -91,7 +99,12 @@ class TicketResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Ticket createUpdatedEntity(EntityManager em) {
-        Ticket ticket = new Ticket().title(UPDATED_TITLE).description(UPDATED_DESCRIPTION).dueDate(UPDATED_DUE_DATE).done(UPDATED_DONE);
+        Ticket ticket = new Ticket()
+            .title(UPDATED_TITLE)
+            .description(UPDATED_DESCRIPTION)
+            .dueDate(UPDATED_DUE_DATE)
+            .done(UPDATED_DONE)
+            .newEntity(UPDATED_NEW_ENTITY);
         return ticket;
     }
 
@@ -202,7 +215,9 @@ class TicketResourceIT {
             .jsonPath("$.[*].dueDate")
             .value(hasItem(DEFAULT_DUE_DATE.toString()))
             .jsonPath("$.[*].done")
-            .value(hasItem(DEFAULT_DONE.booleanValue()));
+            .value(hasItem(DEFAULT_DONE.booleanValue()))
+            .jsonPath("$.[*].newEntity")
+            .value(hasItem(DEFAULT_NEW_ENTITY));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -247,7 +262,9 @@ class TicketResourceIT {
             .jsonPath("$.dueDate")
             .value(is(DEFAULT_DUE_DATE.toString()))
             .jsonPath("$.done")
-            .value(is(DEFAULT_DONE.booleanValue()));
+            .value(is(DEFAULT_DONE.booleanValue()))
+            .jsonPath("$.newEntity")
+            .value(is(DEFAULT_NEW_ENTITY));
     }
 
     @Test
@@ -271,7 +288,12 @@ class TicketResourceIT {
 
         // Update the ticket
         Ticket updatedTicket = ticketRepository.findById(ticket.getId()).block();
-        updatedTicket.title(UPDATED_TITLE).description(UPDATED_DESCRIPTION).dueDate(UPDATED_DUE_DATE).done(UPDATED_DONE);
+        updatedTicket
+            .title(UPDATED_TITLE)
+            .description(UPDATED_DESCRIPTION)
+            .dueDate(UPDATED_DUE_DATE)
+            .done(UPDATED_DONE)
+            .newEntity(UPDATED_NEW_ENTITY);
 
         webTestClient
             .put()
@@ -355,7 +377,7 @@ class TicketResourceIT {
         Ticket partialUpdatedTicket = new Ticket();
         partialUpdatedTicket.setId(ticket.getId());
 
-        partialUpdatedTicket.title(UPDATED_TITLE);
+        partialUpdatedTicket.title(UPDATED_TITLE).description(UPDATED_DESCRIPTION).dueDate(UPDATED_DUE_DATE).newEntity(UPDATED_NEW_ENTITY);
 
         webTestClient
             .patch()
@@ -383,7 +405,12 @@ class TicketResourceIT {
         Ticket partialUpdatedTicket = new Ticket();
         partialUpdatedTicket.setId(ticket.getId());
 
-        partialUpdatedTicket.title(UPDATED_TITLE).description(UPDATED_DESCRIPTION).dueDate(UPDATED_DUE_DATE).done(UPDATED_DONE);
+        partialUpdatedTicket
+            .title(UPDATED_TITLE)
+            .description(UPDATED_DESCRIPTION)
+            .dueDate(UPDATED_DUE_DATE)
+            .done(UPDATED_DONE)
+            .newEntity(UPDATED_NEW_ENTITY);
 
         webTestClient
             .patch()

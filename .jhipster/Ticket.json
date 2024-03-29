@@ -20,8 +20,13 @@
     {
       "fieldName": "done",
       "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "newEntity",
+      "fieldType": "String"
     }
   ],
+  "incrementalChangelog": false,
   "name": "Ticket",
   "pagination": "pagination",
   "relationships": [

@@ -48,6 +48,10 @@
               <span v-text="t$('jhipsterDemoApp.ticket.done')"></span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'done'"></jhi-sort-indicator>
             </th>
+            <th scope="row" v-on:click="changeOrder('newEntity')">
+              <span v-text="t$('jhipsterDemoApp.ticket.newEntity')"></span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'newEntity'"></jhi-sort-indicator>
+            </th>
             <th scope="row" v-on:click="changeOrder('project.name')">
               <span v-text="t$('jhipsterDemoApp.ticket.project')"></span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'project.name'"></jhi-sort-indicator>
@@ -68,6 +72,7 @@
             <td>{{ ticket.description }}</td>
             <td>{{ ticket.dueDate }}</td>
             <td>{{ ticket.done }}</td>
+            <td>{{ ticket.newEntity }}</td>
             <td>
               <div v-if="ticket.project">
                 <router-link :to="{ name: 'ProjectView', params: { projectId: ticket.project.id } }">{{ ticket.project.name }}</router-link>

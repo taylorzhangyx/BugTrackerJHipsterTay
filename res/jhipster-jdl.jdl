@@ -4,12 +4,14 @@ entity Project {
 }
 entity Label{
     label String minlength(3)
+    desc String minlength(5)
 }
 entity Ticket {
     title String required
     description String
     dueDate LocalDate
     done Boolean
+    newEntity String
 }
 relationship ManyToMany {
     Ticket{label(label)} to Label{ticket}

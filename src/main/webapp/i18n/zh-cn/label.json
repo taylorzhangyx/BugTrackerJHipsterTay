@@ -19,6 +19,7 @@
       },
       "id": "ID",
       "label": "Label",
+      "desc": "Desc",
       "ticket": "Ticket"
     }
   }

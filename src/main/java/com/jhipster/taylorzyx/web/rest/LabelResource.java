@@ -149,6 +149,9 @@ public class LabelResource {
                         if (label.getLabel() != null) {
                             existingLabel.setLabel(label.getLabel());
                         }
+                        if (label.getDesc() != null) {
+                            existingLabel.setDesc(label.getDesc());
+                        }
 
                         return existingLabel;
                     })

@@ -50,7 +50,8 @@ public class TicketAsserts {
             .satisfies(e -> assertThat(e.getTitle()).as("check title").isEqualTo(actual.getTitle()))
             .satisfies(e -> assertThat(e.getDescription()).as("check description").isEqualTo(actual.getDescription()))
             .satisfies(e -> assertThat(e.getDueDate()).as("check dueDate").isEqualTo(actual.getDueDate()))
-            .satisfies(e -> assertThat(e.getDone()).as("check done").isEqualTo(actual.getDone()));
+            .satisfies(e -> assertThat(e.getDone()).as("check done").isEqualTo(actual.getDone()))
+            .satisfies(e -> assertThat(e.getNewEntity()).as("check newEntity").isEqualTo(actual.getNewEntity()));
     }
 
     /**

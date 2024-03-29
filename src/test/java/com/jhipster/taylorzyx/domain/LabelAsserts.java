@@ -47,7 +47,8 @@ public class LabelAsserts {
     public static void assertLabelUpdatableFieldsEquals(Label expected, Label actual) {
         assertThat(expected)
             .as("Verify Label relevant properties")
-            .satisfies(e -> assertThat(e.getLabel()).as("check label").isEqualTo(actual.getLabel()));
+            .satisfies(e -> assertThat(e.getLabel()).as("check label").isEqualTo(actual.getLabel()))
+            .satisfies(e -> assertThat(e.getDesc()).as("check desc").isEqualTo(actual.getDesc()));
     }
 
     /**

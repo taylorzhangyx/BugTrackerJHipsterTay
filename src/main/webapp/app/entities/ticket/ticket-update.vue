@@ -81,6 +81,18 @@
             />
           </div>
           <div class="form-group">
+            <label class="form-control-label" v-text="t$('jhipsterDemoApp.ticket.newEntity')" for="ticket-newEntity"></label>
+            <input
+              type="text"
+              class="form-control"
+              name="newEntity"
+              id="ticket-newEntity"
+              data-cy="newEntity"
+              :class="{ valid: !v$.newEntity.$invalid, invalid: v$.newEntity.$invalid }"
+              v-model="v$.newEntity.$model"
+            />
+          </div>
+          <div class="form-group">
             <label class="form-control-label" v-text="t$('jhipsterDemoApp.ticket.project')" for="ticket-project"></label>
             <select class="form-control" id="ticket-project" data-cy="project" name="project" v-model="ticket.project">
               <option v-bind:value="null"></option>
