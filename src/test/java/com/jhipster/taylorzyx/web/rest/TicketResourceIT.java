@@ -53,6 +53,9 @@ class TicketResourceIT {
     private static final String DEFAULT_NEW_ENTITY = "AAAAAAAAAA";
     private static final String UPDATED_NEW_ENTITY = "BBBBBBBBBB";
 
+    private static final String DEFAULT_SOME_INFO = "AAAAAAAAAA";
+    private static final String UPDATED_SOME_INFO = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/tickets";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -88,7 +91,8 @@ class TicketResourceIT {
             .description(DEFAULT_DESCRIPTION)
             .dueDate(DEFAULT_DUE_DATE)
             .done(DEFAULT_DONE)
-            .newEntity(DEFAULT_NEW_ENTITY);
+            .newEntity(DEFAULT_NEW_ENTITY)
+            .someInfo(DEFAULT_SOME_INFO);
         return ticket;
     }
 
@@ -104,7 +108,8 @@ class TicketResourceIT {
             .description(UPDATED_DESCRIPTION)
             .dueDate(UPDATED_DUE_DATE)
             .done(UPDATED_DONE)
-            .newEntity(UPDATED_NEW_ENTITY);
+            .newEntity(UPDATED_NEW_ENTITY)
+            .someInfo(UPDATED_SOME_INFO);
         return ticket;
     }
 
@@ -217,7 +222,9 @@ class TicketResourceIT {
             .jsonPath("$.[*].done")
             .value(hasItem(DEFAULT_DONE.booleanValue()))
             .jsonPath("$.[*].newEntity")
-            .value(hasItem(DEFAULT_NEW_ENTITY));
+            .value(hasItem(DEFAULT_NEW_ENTITY))
+            .jsonPath("$.[*].someInfo")
+            .value(hasItem(DEFAULT_SOME_INFO));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -264,7 +271,9 @@ class TicketResourceIT {
             .jsonPath("$.done")
             .value(is(DEFAULT_DONE.booleanValue()))
             .jsonPath("$.newEntity")
-            .value(is(DEFAULT_NEW_ENTITY));
+            .value(is(DEFAULT_NEW_ENTITY))
+            .jsonPath("$.someInfo")
+            .value(is(DEFAULT_SOME_INFO));
     }
 
     @Test
@@ -293,7 +302,8 @@ class TicketResourceIT {
             .description(UPDATED_DESCRIPTION)
             .dueDate(UPDATED_DUE_DATE)
             .done(UPDATED_DONE)
-            .newEntity(UPDATED_NEW_ENTITY);
+            .newEntity(UPDATED_NEW_ENTITY)
+            .someInfo(UPDATED_SOME_INFO);
 
         webTestClient
             .put()
@@ -377,7 +387,12 @@ class TicketResourceIT {
         Ticket partialUpdatedTicket = new Ticket();
         partialUpdatedTicket.setId(ticket.getId());
 
-        partialUpdatedTicket.title(UPDATED_TITLE).description(UPDATED_DESCRIPTION).dueDate(UPDATED_DUE_DATE).newEntity(UPDATED_NEW_ENTITY);
+        partialUpdatedTicket
+            .title(UPDATED_TITLE)
+            .description(UPDATED_DESCRIPTION)
+            .dueDate(UPDATED_DUE_DATE)
+            .newEntity(UPDATED_NEW_ENTITY)
+            .someInfo(UPDATED_SOME_INFO);
 
         webTestClient
             .patch()
@@ -410,7 +425,8 @@ class TicketResourceIT {
             .description(UPDATED_DESCRIPTION)
             .dueDate(UPDATED_DUE_DATE)
             .done(UPDATED_DONE)
-            .newEntity(UPDATED_NEW_ENTITY);
+            .newEntity(UPDATED_NEW_ENTITY)
+            .someInfo(UPDATED_SOME_INFO);
 
         webTestClient
             .patch()

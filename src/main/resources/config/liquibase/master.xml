@@ -21,5 +21,11 @@
     <include file="config/liquibase/changelog/20240329125823_updated_entity_migrate_Label.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240329125824_updated_entity_Ticket.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240329125824_updated_entity_migrate_Ticket.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240329130105_updated_entity_Project.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240329130105_updated_entity_migrate_Project.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240329130106_updated_entity_Label.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240329130106_updated_entity_migrate_Label.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240329130107_updated_entity_Ticket.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240329130107_updated_entity_migrate_Ticket.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

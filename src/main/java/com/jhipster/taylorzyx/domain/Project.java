@@ -21,6 +21,9 @@ public class Project implements Serializable {
     @Column("name")
     private String name;
 
+    @Column("description")
+    private String description;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -49,6 +52,19 @@ public class Project implements Serializable {
         this.name = name;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public Project description(String description) {
+        this.setDescription(description);
+        return this;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -74,6 +90,7 @@ public class Project implements Serializable {
         return "Project{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", description='" + getDescription() + "'" +
             "}";
     }
 }

@@ -40,6 +40,9 @@ public class Ticket implements Serializable {
     @Column("new_entity")
     private String newEntity;
 
+    @Column("some_info")
+    private String someInfo;
+
     @Transient
     private Project project;
 
@@ -134,6 +137,19 @@ public class Ticket implements Serializable {
 
     public void setNewEntity(String newEntity) {
         this.newEntity = newEntity;
+    }
+
+    public String getSomeInfo() {
+        return this.someInfo;
+    }
+
+    public Ticket someInfo(String someInfo) {
+        this.setSomeInfo(someInfo);
+        return this;
+    }
+
+    public void setSomeInfo(String someInfo) {
+        this.someInfo = someInfo;
     }
 
     public Project getProject() {
@@ -232,6 +248,7 @@ public class Ticket implements Serializable {
             ", dueDate='" + getDueDate() + "'" +
             ", done='" + getDone() + "'" +
             ", newEntity='" + getNewEntity() + "'" +
+            ", someInfo='" + getSomeInfo() + "'" +
             "}";
     }
 }

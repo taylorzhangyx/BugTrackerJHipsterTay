@@ -13,6 +13,7 @@ public class LabelSqlHelper {
         columns.add(Column.aliased("id", table, columnPrefix + "_id"));
         columns.add(Column.aliased("label", table, columnPrefix + "_label"));
         columns.add(Column.aliased("jhi_desc", table, columnPrefix + "_jhi_desc"));
+        columns.add(Column.aliased("fake_number", table, columnPrefix + "_fake_number"));
 
         return columns;
     }

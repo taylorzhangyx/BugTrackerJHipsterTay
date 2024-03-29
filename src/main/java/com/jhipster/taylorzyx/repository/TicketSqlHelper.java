@@ -16,6 +16,7 @@ public class TicketSqlHelper {
         columns.add(Column.aliased("due_date", table, columnPrefix + "_due_date"));
         columns.add(Column.aliased("done", table, columnPrefix + "_done"));
         columns.add(Column.aliased("new_entity", table, columnPrefix + "_new_entity"));
+        columns.add(Column.aliased("some_info", table, columnPrefix + "_some_info"));
 
         columns.add(Column.aliased("project_id", table, columnPrefix + "_project_id"));
         columns.add(Column.aliased("assigned_to_id", table, columnPrefix + "_assigned_to_id"));

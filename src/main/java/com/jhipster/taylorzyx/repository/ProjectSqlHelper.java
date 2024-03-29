@@ -12,6 +12,7 @@ public class ProjectSqlHelper {
         List<Expression> columns = new ArrayList<>();
         columns.add(Column.aliased("id", table, columnPrefix + "_id"));
         columns.add(Column.aliased("name", table, columnPrefix + "_name"));
+        columns.add(Column.aliased("description", table, columnPrefix + "_description"));
 
         return columns;
     }

@@ -42,6 +42,7 @@ export default defineComponent({
     const validations = useValidation();
     const validationRules = {
       name: {},
+      description: {},
     };
     const v$ = useVuelidate(validationRules, project as any);
     v$.value.$validate();

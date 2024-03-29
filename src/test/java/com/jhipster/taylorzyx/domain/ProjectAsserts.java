@@ -47,7 +47,8 @@ public class ProjectAsserts {
     public static void assertProjectUpdatableFieldsEquals(Project expected, Project actual) {
         assertThat(expected)
             .as("Verify Project relevant properties")
-            .satisfies(e -> assertThat(e.getName()).as("check name").isEqualTo(actual.getName()));
+            .satisfies(e -> assertThat(e.getName()).as("check name").isEqualTo(actual.getName()))
+            .satisfies(e -> assertThat(e.getDescription()).as("check description").isEqualTo(actual.getDescription()));
     }
 
     /**

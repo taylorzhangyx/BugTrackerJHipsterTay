@@ -35,6 +35,9 @@ class ProjectResourceIT {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/projects";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -62,7 +65,7 @@ class ProjectResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Project createEntity(EntityManager em) {
-        Project project = new Project().name(DEFAULT_NAME);
+        Project project = new Project().name(DEFAULT_NAME).description(DEFAULT_DESCRIPTION);
         return project;
     }
 
@@ -73,7 +76,7 @@ class ProjectResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Project createUpdatedEntity(EntityManager em) {
-        Project project = new Project().name(UPDATED_NAME);
+        Project project = new Project().name(UPDATED_NAME).description(UPDATED_DESCRIPTION);
         return project;
     }
 
@@ -186,7 +189,9 @@ class ProjectResourceIT {
             .jsonPath("$.[*].id")
             .value(hasItem(project.getId().intValue()))
             .jsonPath("$.[*].name")
-            .value(hasItem(DEFAULT_NAME));
+            .value(hasItem(DEFAULT_NAME))
+            .jsonPath("$.[*].description")
+            .value(hasItem(DEFAULT_DESCRIPTION));
     }
 
     @Test
@@ -208,7 +213,9 @@ class ProjectResourceIT {
             .jsonPath("$.id")
             .value(is(project.getId().intValue()))
             .jsonPath("$.name")
-            .value(is(DEFAULT_NAME));
+            .value(is(DEFAULT_NAME))
+            .jsonPath("$.description")
+            .value(is(DEFAULT_DESCRIPTION));
     }
 
     @Test
@@ -232,7 +239,7 @@ class ProjectResourceIT {
 
         // Update the project
         Project updatedProject = projectRepository.findById(project.getId()).block();
-        updatedProject.name(UPDATED_NAME);
+        updatedProject.name(UPDATED_NAME).description(UPDATED_DESCRIPTION);
 
         webTestClient
             .put()
@@ -344,7 +351,7 @@ class ProjectResourceIT {
         Project partialUpdatedProject = new Project();
         partialUpdatedProject.setId(project.getId());
 
-        partialUpdatedProject.name(UPDATED_NAME);
+        partialUpdatedProject.name(UPDATED_NAME).description(UPDATED_DESCRIPTION);
 
         webTestClient
             .patch()

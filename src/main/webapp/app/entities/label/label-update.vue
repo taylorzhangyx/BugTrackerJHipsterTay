@@ -43,6 +43,18 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="form-control-label" v-text="t$('jhipsterDemoApp.label.fakeNumber')" for="label-fakeNumber"></label>
+            <input
+              type="number"
+              class="form-control"
+              name="fakeNumber"
+              id="label-fakeNumber"
+              data-cy="fakeNumber"
+              :class="{ valid: !v$.fakeNumber.$invalid, invalid: v$.fakeNumber.$invalid }"
+              v-model.number="v$.fakeNumber.$model"
+            />
+          </div>
+          <div class="form-group">
             <label v-text="t$('jhipsterDemoApp.label.ticket')" for="label-ticket"></label>
             <select
               class="form-control"

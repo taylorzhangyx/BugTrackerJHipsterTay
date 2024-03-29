@@ -82,6 +82,7 @@ public class TicketGatlingTest extends Simulation {
                                 ", \"dueDate\": \"2020-01-01T00:00:00.000Z\"" +
                                 ", \"done\": null" +
                                 ", \"newEntity\": \"SAMPLE_TEXT\"" +
+                                ", \"someInfo\": \"SAMPLE_TEXT\"" +
                                 "}"
                             )
                         )

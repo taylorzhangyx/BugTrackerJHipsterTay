@@ -152,6 +152,9 @@ public class LabelResource {
                         if (label.getDesc() != null) {
                             existingLabel.setDesc(label.getDesc());
                         }
+                        if (label.getFakeNumber() != null) {
+                            existingLabel.setFakeNumber(label.getFakeNumber());
+                        }
 
                         return existingLabel;
                     })

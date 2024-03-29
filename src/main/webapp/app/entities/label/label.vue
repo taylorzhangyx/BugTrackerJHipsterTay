@@ -31,6 +31,7 @@
             <th scope="row"><span v-text="t$('global.field.id')"></span></th>
             <th scope="row"><span v-text="t$('jhipsterDemoApp.label.label')"></span></th>
             <th scope="row"><span v-text="t$('jhipsterDemoApp.label.desc')"></span></th>
+            <th scope="row"><span v-text="t$('jhipsterDemoApp.label.fakeNumber')"></span></th>
             <th scope="row"><span v-text="t$('jhipsterDemoApp.label.ticket')"></span></th>
             <th scope="row"></th>
           </tr>
@@ -42,6 +43,7 @@
             </td>
             <td>{{ label.label }}</td>
             <td>{{ label.desc }}</td>
+            <td>{{ label.fakeNumber }}</td>
             <td>
               <span v-for="(ticket, i) in label.tickets" :key="ticket.id"
                 >{{ i > 0 ? ', ' : '' }}

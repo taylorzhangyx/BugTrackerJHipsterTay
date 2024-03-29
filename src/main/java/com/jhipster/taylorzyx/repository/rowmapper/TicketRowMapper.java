@@ -31,6 +31,7 @@ public class TicketRowMapper implements BiFunction<Row, String, Ticket> {
         entity.setDueDate(converter.fromRow(row, prefix + "_due_date", LocalDate.class));
         entity.setDone(converter.fromRow(row, prefix + "_done", Boolean.class));
         entity.setNewEntity(converter.fromRow(row, prefix + "_new_entity", String.class));
+        entity.setSomeInfo(converter.fromRow(row, prefix + "_some_info", String.class));
         entity.setProjectId(converter.fromRow(row, prefix + "_project_id", Long.class));
         entity.setAssignedToId(converter.fromRow(row, prefix + "_assigned_to_id", Long.class));
         return entity;

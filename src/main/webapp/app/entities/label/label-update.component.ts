@@ -63,6 +63,7 @@ export default defineComponent({
       desc: {
         minLength: validations.minLength(t$('entity.validation.minlength', { min: 5 }).toString(), 5),
       },
+      fakeNumber: {},
       tickets: {},
     };
     const v$ = useVuelidate(validationRules, label as any);

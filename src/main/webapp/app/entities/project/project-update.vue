@@ -24,6 +24,18 @@
               v-model="v$.name.$model"
             />
           </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="t$('jhipsterDemoApp.project.description')" for="project-description"></label>
+            <input
+              type="text"
+              class="form-control"
+              name="description"
+              id="project-description"
+              data-cy="description"
+              :class="{ valid: !v$.description.$invalid, invalid: v$.description.$invalid }"
+              v-model="v$.description.$model"
+            />
+          </div>
         </div>
         <div>
           <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" v-on:click="previousState()">

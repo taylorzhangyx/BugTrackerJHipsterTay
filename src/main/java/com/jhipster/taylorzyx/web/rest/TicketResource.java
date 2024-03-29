@@ -165,6 +165,9 @@ public class TicketResource {
                         if (ticket.getNewEntity() != null) {
                             existingTicket.setNewEntity(ticket.getNewEntity());
                         }
+                        if (ticket.getSomeInfo() != null) {
+                            existingTicket.setSomeInfo(ticket.getSomeInfo());
+                        }
 
                         return existingTicket;
                     })

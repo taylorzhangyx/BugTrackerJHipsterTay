@@ -15,6 +15,10 @@
       "fieldType": "String",
       "fieldValidateRules": ["minlength"],
       "fieldValidateRulesMinlength": "5"
+    },
+    {
+      "fieldName": "fakeNumber",
+      "fieldType": "Integer"
     }
   ],
   "incrementalChangelog": false,

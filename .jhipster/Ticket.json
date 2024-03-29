@@ -24,6 +24,10 @@
     {
       "fieldName": "newEntity",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "someInfo",
+      "fieldType": "String"
     }
   ],
   "incrementalChangelog": false,

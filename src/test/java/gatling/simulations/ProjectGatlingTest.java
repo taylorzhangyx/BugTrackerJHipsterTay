@@ -74,7 +74,7 @@ public class ProjectGatlingTest extends Simulation {
                     http("Create new project")
                         .post("/api/projects")
                         .headers(headers_http_authenticated)
-                        .body(StringBody("{" + "\"name\": \"SAMPLE_TEXT\"" + "}"))
+                        .body(StringBody("{" + "\"name\": \"SAMPLE_TEXT\"" + ", \"description\": \"SAMPLE_TEXT\"" + "}"))
                         .asJson()
                         .check(status().is(201))
                         .check(headerRegex("Location", "(.*)").saveAs("new_project_url"))

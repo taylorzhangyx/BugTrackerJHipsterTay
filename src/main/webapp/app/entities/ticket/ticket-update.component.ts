@@ -83,6 +83,7 @@ export default defineComponent({
       dueDate: {},
       done: {},
       newEntity: {},
+      someInfo: {},
       project: {},
       assignedTo: {},
       labels: {},

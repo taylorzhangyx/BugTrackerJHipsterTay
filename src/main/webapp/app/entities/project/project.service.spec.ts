@@ -29,7 +29,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new ProjectService();
-      elemDefault = new Project(123, 'AAAAAAA');
+      elemDefault = new Project(123, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -82,6 +82,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
+            description: 'BBBBBB',
           },
           elemDefault,
         );
@@ -106,7 +107,13 @@ describe('Service Tests', () => {
       });
 
       it('should partial update a Project', async () => {
-        const patchObject = Object.assign({}, new Project());
+        const patchObject = Object.assign(
+          {
+            name: 'BBBBBB',
+            description: 'BBBBBB',
+          },
+          new Project(),
+        );
         const returnedFromService = Object.assign(patchObject, elemDefault);
 
         const expected = Object.assign({}, returnedFromService);
@@ -132,6 +139,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
+            description: 'BBBBBB',
           },
           elemDefault,
         );

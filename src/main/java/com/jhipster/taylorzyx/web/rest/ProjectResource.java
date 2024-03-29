@@ -147,6 +147,9 @@ public class ProjectResource {
                         if (project.getName() != null) {
                             existingProject.setName(project.getName());
                         }
+                        if (project.getDescription() != null) {
+                            existingProject.setDescription(project.getDescription());
+                        }
 
                         return existingProject;
                     })

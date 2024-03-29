@@ -33,7 +33,7 @@ describe('Service Tests', () => {
     beforeEach(() => {
       service = new TicketService();
       currentDate = new Date();
-      elemDefault = new Ticket(123, 'AAAAAAA', 'AAAAAAA', currentDate, false, 'AAAAAAA');
+      elemDefault = new Ticket(123, 'AAAAAAA', 'AAAAAAA', currentDate, false, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -101,6 +101,7 @@ describe('Service Tests', () => {
             dueDate: dayjs(currentDate).format(DATE_FORMAT),
             done: true,
             newEntity: 'BBBBBB',
+            someInfo: 'BBBBBB',
           },
           elemDefault,
         );
@@ -135,7 +136,6 @@ describe('Service Tests', () => {
             title: 'BBBBBB',
             description: 'BBBBBB',
             dueDate: dayjs(currentDate).format(DATE_FORMAT),
-            done: true,
           },
           new Ticket(),
         );
@@ -173,6 +173,7 @@ describe('Service Tests', () => {
             dueDate: dayjs(currentDate).format(DATE_FORMAT),
             done: true,
             newEntity: 'BBBBBB',
+            someInfo: 'BBBBBB',
           },
           elemDefault,
         );

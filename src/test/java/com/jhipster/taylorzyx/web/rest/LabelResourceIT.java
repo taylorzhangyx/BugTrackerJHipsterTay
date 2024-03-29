@@ -38,6 +38,9 @@ class LabelResourceIT {
     private static final String DEFAULT_DESC = "AAAAAAAAAA";
     private static final String UPDATED_DESC = "BBBBBBBBBB";
 
+    private static final Integer DEFAULT_FAKE_NUMBER = 1;
+    private static final Integer UPDATED_FAKE_NUMBER = 2;
+
     private static final String ENTITY_API_URL = "/api/labels";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -65,7 +68,7 @@ class LabelResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Label createEntity(EntityManager em) {
-        Label label = new Label().label(DEFAULT_LABEL).desc(DEFAULT_DESC);
+        Label label = new Label().label(DEFAULT_LABEL).desc(DEFAULT_DESC).fakeNumber(DEFAULT_FAKE_NUMBER);
         return label;
     }
 
@@ -76,7 +79,7 @@ class LabelResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Label createUpdatedEntity(EntityManager em) {
-        Label label = new Label().label(UPDATED_LABEL).desc(UPDATED_DESC);
+        Label label = new Label().label(UPDATED_LABEL).desc(UPDATED_DESC).fakeNumber(UPDATED_FAKE_NUMBER);
         return label;
     }
 
@@ -191,7 +194,9 @@ class LabelResourceIT {
             .jsonPath("$.[*].label")
             .value(hasItem(DEFAULT_LABEL))
             .jsonPath("$.[*].desc")
-            .value(hasItem(DEFAULT_DESC));
+            .value(hasItem(DEFAULT_DESC))
+            .jsonPath("$.[*].fakeNumber")
+            .value(hasItem(DEFAULT_FAKE_NUMBER));
     }
 
     @Test
@@ -215,7 +220,9 @@ class LabelResourceIT {
             .jsonPath("$.label")
             .value(is(DEFAULT_LABEL))
             .jsonPath("$.desc")
-            .value(is(DEFAULT_DESC));
+            .value(is(DEFAULT_DESC))
+            .jsonPath("$.fakeNumber")
+            .value(is(DEFAULT_FAKE_NUMBER));
     }
 
     @Test
@@ -239,7 +246,7 @@ class LabelResourceIT {
 
         // Update the label
         Label updatedLabel = labelRepository.findById(label.getId()).block();
-        updatedLabel.label(UPDATED_LABEL).desc(UPDATED_DESC);
+        updatedLabel.label(UPDATED_LABEL).desc(UPDATED_DESC).fakeNumber(UPDATED_FAKE_NUMBER);
 
         webTestClient
             .put()
@@ -323,7 +330,7 @@ class LabelResourceIT {
         Label partialUpdatedLabel = new Label();
         partialUpdatedLabel.setId(label.getId());
 
-        partialUpdatedLabel.label(UPDATED_LABEL);
+        partialUpdatedLabel.label(UPDATED_LABEL).fakeNumber(UPDATED_FAKE_NUMBER);
 
         webTestClient
             .patch()
@@ -351,7 +358,7 @@ class LabelResourceIT {
         Label partialUpdatedLabel = new Label();
         partialUpdatedLabel.setId(label.getId());
 
-        partialUpdatedLabel.label(UPDATED_LABEL).desc(UPDATED_DESC);
+        partialUpdatedLabel.label(UPDATED_LABEL).desc(UPDATED_DESC).fakeNumber(UPDATED_FAKE_NUMBER);
 
         webTestClient
             .patch()

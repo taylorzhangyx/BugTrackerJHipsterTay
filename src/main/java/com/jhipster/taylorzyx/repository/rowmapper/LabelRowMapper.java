@@ -27,6 +27,7 @@ public class LabelRowMapper implements BiFunction<Row, String, Label> {
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
         entity.setLabel(converter.fromRow(row, prefix + "_label", String.class));
         entity.setDesc(converter.fromRow(row, prefix + "_jhi_desc", String.class));
+        entity.setFakeNumber(converter.fromRow(row, prefix + "_fake_number", Integer.class));
         return entity;
     }
 }

@@ -93,6 +93,18 @@
             />
           </div>
           <div class="form-group">
+            <label class="form-control-label" v-text="t$('jhipsterDemoApp.ticket.someInfo')" for="ticket-someInfo"></label>
+            <input
+              type="text"
+              class="form-control"
+              name="someInfo"
+              id="ticket-someInfo"
+              data-cy="someInfo"
+              :class="{ valid: !v$.someInfo.$invalid, invalid: v$.someInfo.$invalid }"
+              v-model="v$.someInfo.$model"
+            />
+          </div>
+          <div class="form-group">
             <label class="form-control-label" v-text="t$('jhipsterDemoApp.ticket.project')" for="ticket-project"></label>
             <select class="form-control" id="ticket-project" data-cy="project" name="project" v-model="ticket.project">
               <option v-bind:value="null"></option>
