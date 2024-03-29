@@ -7,6 +7,8 @@ import ProjectService from './project.service';
 import { useValidation } from '@/shared/composables';
 import { useAlertService } from '@/shared/alert/alert.service';
 
+import TeamService from '@/entities/team/team.service';
+import { type ITeam } from '@/shared/model/team.model';
 import { type IProject, Project } from '@/shared/model/project.model';
 
 export default defineComponent({
@@ -17,6 +19,10 @@ export default defineComponent({
     const alertService = inject('alertService', () => useAlertService(), true);
 
     const project: Ref<IProject> = ref(new Project());
+
+    const teamService = inject('teamService', () => new TeamService());
+
+    const teams: Ref<ITeam[]> = ref([]);
     const isSaving = ref(false);
     const currentLanguage = inject('currentLanguage', () => computed(() => navigator.language ?? 'zh-cn'), true);
 
@@ -38,11 +44,22 @@ export default defineComponent({
       retrieveProject(route.params.projectId);
     }
 
+    const initRelationships = () => {
+      teamService()
+        .retrieve()
+        .then(res => {
+          teams.value = res.data;
+        });
+    };
+
+    initRelationships();
+
     const { t: t$ } = useI18n();
     const validations = useValidation();
     const validationRules = {
       name: {},
       description: {},
+      owner: {},
     };
     const v$ = useVuelidate(validationRules, project as any);
     v$.value.$validate();
@@ -54,6 +71,7 @@ export default defineComponent({
       previousState,
       isSaving,
       currentLanguage,
+      teams,
       v$,
       t$,
     };

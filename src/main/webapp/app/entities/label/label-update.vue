@@ -55,20 +55,16 @@
             />
           </div>
           <div class="form-group">
-            <label v-text="t$('jhipsterDemoApp.label.ticket')" for="label-ticket"></label>
-            <select
+            <label class="form-control-label" v-text="t$('jhipsterDemoApp.label.someFaker')" for="label-someFaker"></label>
+            <input
+              type="text"
               class="form-control"
-              id="label-tickets"
-              data-cy="ticket"
-              multiple
-              name="ticket"
-              v-if="label.tickets !== undefined"
-              v-model="label.tickets"
-            >
-              <option v-bind:value="getSelected(label.tickets, ticketOption, 'id')" v-for="ticketOption in tickets" :key="ticketOption.id">
-                {{ ticketOption.id }}
-              </option>
-            </select>
+              name="someFaker"
+              id="label-someFaker"
+              data-cy="someFaker"
+              :class="{ valid: !v$.someFaker.$invalid, invalid: v$.someFaker.$invalid }"
+              v-model="v$.someFaker.$model"
+            />
           </div>
         </div>
         <div>

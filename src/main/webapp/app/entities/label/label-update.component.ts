@@ -7,8 +7,6 @@ import LabelService from './label.service';
 import { useValidation } from '@/shared/composables';
 import { useAlertService } from '@/shared/alert/alert.service';
 
-import TicketService from '@/entities/ticket/ticket.service';
-import { type ITicket } from '@/shared/model/ticket.model';
 import { type ILabel, Label } from '@/shared/model/label.model';
 
 export default defineComponent({
@@ -19,10 +17,6 @@ export default defineComponent({
     const alertService = inject('alertService', () => useAlertService(), true);
 
     const label: Ref<ILabel> = ref(new Label());
-
-    const ticketService = inject('ticketService', () => new TicketService());
-
-    const tickets: Ref<ITicket[]> = ref([]);
     const isSaving = ref(false);
     const currentLanguage = inject('currentLanguage', () => computed(() => navigator.language ?? 'zh-cn'), true);
 
@@ -44,16 +38,6 @@ export default defineComponent({
       retrieveLabel(route.params.labelId);
     }
 
-    const initRelationships = () => {
-      ticketService()
-        .retrieve()
-        .then(res => {
-          tickets.value = res.data;
-        });
-    };
-
-    initRelationships();
-
     const { t: t$ } = useI18n();
     const validations = useValidation();
     const validationRules = {
@@ -64,7 +48,7 @@ export default defineComponent({
         minLength: validations.minLength(t$('entity.validation.minlength', { min: 5 }).toString(), 5),
       },
       fakeNumber: {},
-      tickets: {},
+      someFaker: {},
     };
     const v$ = useVuelidate(validationRules, label as any);
     v$.value.$validate();
@@ -76,14 +60,11 @@ export default defineComponent({
       previousState,
       isSaving,
       currentLanguage,
-      tickets,
       v$,
       t$,
     };
   },
-  created(): void {
-    this.label.tickets = [];
-  },
+  created(): void {},
   methods: {
     save(): void {
       this.isSaving = true;
@@ -112,13 +93,6 @@ export default defineComponent({
             this.alertService.showHttpError(error.response);
           });
       }
-    },
-
-    getSelected(selectedVals, option, pkField = 'id'): any {
-      if (selectedVals) {
-        return selectedVals.find(value => option[pkField] === value[pkField]) ?? option;
-      }
-      return option;
     },
   },
 });

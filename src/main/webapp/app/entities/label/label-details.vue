@@ -25,13 +25,10 @@
             <span>{{ label.fakeNumber }}</span>
           </dd>
           <dt>
-            <span v-text="t$('jhipsterDemoApp.label.ticket')"></span>
+            <span v-text="t$('jhipsterDemoApp.label.someFaker')"></span>
           </dt>
           <dd>
-            <span v-for="(ticket, i) in label.tickets" :key="ticket.id"
-              >{{ i > 0 ? ', ' : '' }}
-              <router-link :to="{ name: 'TicketView', params: { ticketId: ticket.id } }">{{ ticket.id }}</router-link>
-            </span>
+            <span>{{ label.someFaker }}</span>
           </dd>
         </dl>
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

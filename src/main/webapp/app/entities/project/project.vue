@@ -31,6 +31,7 @@
             <th scope="row"><span v-text="t$('global.field.id')"></span></th>
             <th scope="row"><span v-text="t$('jhipsterDemoApp.project.name')"></span></th>
             <th scope="row"><span v-text="t$('jhipsterDemoApp.project.description')"></span></th>
+            <th scope="row"><span v-text="t$('jhipsterDemoApp.project.owner')"></span></th>
             <th scope="row"></th>
           </tr>
         </thead>
@@ -41,6 +42,11 @@
             </td>
             <td>{{ project.name }}</td>
             <td>{{ project.description }}</td>
+            <td>
+              <div v-if="project.owner">
+                <router-link :to="{ name: 'TeamView', params: { teamId: project.owner.id } }">{{ project.owner.id }}</router-link>
+              </div>
+            </td>
             <td class="text-right">
               <div class="btn-group">
                 <router-link :to="{ name: 'ProjectView', params: { projectId: project.id } }" custom v-slot="{ navigate }">

@@ -27,6 +27,7 @@ public class ProjectRowMapper implements BiFunction<Row, String, Project> {
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
         entity.setName(converter.fromRow(row, prefix + "_name", String.class));
         entity.setDescription(converter.fromRow(row, prefix + "_description", String.class));
+        entity.setOwnerId(converter.fromRow(row, prefix + "_owner_id", Long.class));
         return entity;
     }
 }

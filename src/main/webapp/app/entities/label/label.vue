@@ -32,7 +32,7 @@
             <th scope="row"><span v-text="t$('jhipsterDemoApp.label.label')"></span></th>
             <th scope="row"><span v-text="t$('jhipsterDemoApp.label.desc')"></span></th>
             <th scope="row"><span v-text="t$('jhipsterDemoApp.label.fakeNumber')"></span></th>
-            <th scope="row"><span v-text="t$('jhipsterDemoApp.label.ticket')"></span></th>
+            <th scope="row"><span v-text="t$('jhipsterDemoApp.label.someFaker')"></span></th>
             <th scope="row"></th>
           </tr>
         </thead>
@@ -44,14 +44,7 @@
             <td>{{ label.label }}</td>
             <td>{{ label.desc }}</td>
             <td>{{ label.fakeNumber }}</td>
-            <td>
-              <span v-for="(ticket, i) in label.tickets" :key="ticket.id"
-                >{{ i > 0 ? ', ' : '' }}
-                <router-link class="form-control-static" :to="{ name: 'TicketView', params: { ticketId: ticket.id } }">{{
-                  ticket.id
-                }}</router-link>
-              </span>
-            </td>
+            <td>{{ label.someFaker }}</td>
             <td class="text-right">
               <div class="btn-group">
                 <router-link :to="{ name: 'LabelView', params: { labelId: label.id } }" custom v-slot="{ navigate }">

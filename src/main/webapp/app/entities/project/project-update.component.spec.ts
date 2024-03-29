@@ -8,6 +8,8 @@ import ProjectUpdate from './project-update.vue';
 import ProjectService from './project.service';
 import AlertService from '@/shared/alert/alert.service';
 
+import TeamService from '@/entities/team/team.service';
+
 type ProjectUpdateComponentType = InstanceType<typeof ProjectUpdate>;
 
 let route: Partial<RouteLocation>;
@@ -51,6 +53,10 @@ describe('Component Tests', () => {
         provide: {
           alertService,
           projectService: () => projectServiceStub,
+          teamService: () =>
+            sinon.createStubInstance<TeamService>(TeamService, {
+              retrieve: sinon.stub().resolves({}),
+            } as any),
         },
       };
     });

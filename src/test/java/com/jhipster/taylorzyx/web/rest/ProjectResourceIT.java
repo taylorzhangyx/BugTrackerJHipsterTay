@@ -323,7 +323,7 @@ class ProjectResourceIT {
         Project partialUpdatedProject = new Project();
         partialUpdatedProject.setId(project.getId());
 
-        partialUpdatedProject.name(UPDATED_NAME);
+        partialUpdatedProject.description(UPDATED_DESCRIPTION);
 
         webTestClient
             .patch()

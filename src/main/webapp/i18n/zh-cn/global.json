@@ -10,7 +10,9 @@
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
         "project": "Project",
         "label": "Label",
-        "ticket": "Ticket"
+        "ticket": "Ticket",
+        "team": "Team",
+        "member": "Member"
       },
       "account": {
         "main": "账号",

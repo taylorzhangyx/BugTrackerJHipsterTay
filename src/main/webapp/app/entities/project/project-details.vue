@@ -18,6 +18,14 @@
           <dd>
             <span>{{ project.description }}</span>
           </dd>
+          <dt>
+            <span v-text="t$('jhipsterDemoApp.project.owner')"></span>
+          </dt>
+          <dd>
+            <div v-if="project.owner">
+              <router-link :to="{ name: 'TeamView', params: { teamId: project.owner.id } }">{{ project.owner.id }}</router-link>
+            </div>
+          </dd>
         </dl>
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
           <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span v-text="t$('entity.action.back')"></span>

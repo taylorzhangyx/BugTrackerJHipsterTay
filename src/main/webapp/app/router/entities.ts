@@ -15,6 +15,14 @@ const Ticket = () => import('@/entities/ticket/ticket.vue');
 const TicketUpdate = () => import('@/entities/ticket/ticket-update.vue');
 const TicketDetails = () => import('@/entities/ticket/ticket-details.vue');
 
+const Team = () => import('@/entities/team/team.vue');
+const TeamUpdate = () => import('@/entities/team/team-update.vue');
+const TeamDetails = () => import('@/entities/team/team-details.vue');
+
+const Member = () => import('@/entities/member/member.vue');
+const MemberUpdate = () => import('@/entities/member/member-update.vue');
+const MemberDetails = () => import('@/entities/member/member-details.vue');
+
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default {
@@ -91,6 +99,54 @@ export default {
       path: 'ticket/:ticketId/view',
       name: 'TicketView',
       component: TicketDetails,
+      meta: { authorities: [Authority.USER] },
+    },
+    {
+      path: 'team',
+      name: 'Team',
+      component: Team,
+      meta: { authorities: [Authority.USER] },
+    },
+    {
+      path: 'team/new',
+      name: 'TeamCreate',
+      component: TeamUpdate,
+      meta: { authorities: [Authority.USER] },
+    },
+    {
+      path: 'team/:teamId/edit',
+      name: 'TeamEdit',
+      component: TeamUpdate,
+      meta: { authorities: [Authority.USER] },
+    },
+    {
+      path: 'team/:teamId/view',
+      name: 'TeamView',
+      component: TeamDetails,
+      meta: { authorities: [Authority.USER] },
+    },
+    {
+      path: 'member',
+      name: 'Member',
+      component: Member,
+      meta: { authorities: [Authority.USER] },
+    },
+    {
+      path: 'member/new',
+      name: 'MemberCreate',
+      component: MemberUpdate,
+      meta: { authorities: [Authority.USER] },
+    },
+    {
+      path: 'member/:memberId/edit',
+      name: 'MemberEdit',
+      component: MemberUpdate,
+      meta: { authorities: [Authority.USER] },
+    },
+    {
+      path: 'member/:memberId/view',
+      name: 'MemberView',
+      component: MemberDetails,
       meta: { authorities: [Authority.USER] },
     },
     // jhipster-needle-add-entity-to-router - JHipster will add entities to the router here

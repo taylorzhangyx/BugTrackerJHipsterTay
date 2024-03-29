@@ -49,7 +49,8 @@ public class LabelAsserts {
             .as("Verify Label relevant properties")
             .satisfies(e -> assertThat(e.getLabel()).as("check label").isEqualTo(actual.getLabel()))
             .satisfies(e -> assertThat(e.getDesc()).as("check desc").isEqualTo(actual.getDesc()))
-            .satisfies(e -> assertThat(e.getFakeNumber()).as("check fakeNumber").isEqualTo(actual.getFakeNumber()));
+            .satisfies(e -> assertThat(e.getFakeNumber()).as("check fakeNumber").isEqualTo(actual.getFakeNumber()))
+            .satisfies(e -> assertThat(e.getSomeFaker()).as("check someFaker").isEqualTo(actual.getSomeFaker()));
     }
 
     /**
@@ -58,9 +59,5 @@ public class LabelAsserts {
      * @param expected the expected entity
      * @param actual the actual entity
      */
-    public static void assertLabelUpdatableRelationshipsEquals(Label expected, Label actual) {
-        assertThat(expected)
-            .as("Verify Label relationships")
-            .satisfies(e -> assertThat(e.getTickets()).as("check tickets").isEqualTo(actual.getTickets()));
-    }
+    public static void assertLabelUpdatableRelationshipsEquals(Label expected, Label actual) {}
 }

@@ -29,7 +29,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new LabelService();
-      elemDefault = new Label(123, 'AAAAAAA', 'AAAAAAA', 0);
+      elemDefault = new Label(123, 'AAAAAAA', 'AAAAAAA', 0, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -84,6 +84,7 @@ describe('Service Tests', () => {
             label: 'BBBBBB',
             desc: 'BBBBBB',
             fakeNumber: 1,
+            someFaker: 'BBBBBB',
           },
           elemDefault,
         );
@@ -108,7 +109,12 @@ describe('Service Tests', () => {
       });
 
       it('should partial update a Label', async () => {
-        const patchObject = Object.assign({}, new Label());
+        const patchObject = Object.assign(
+          {
+            desc: 'BBBBBB',
+          },
+          new Label(),
+        );
         const returnedFromService = Object.assign(patchObject, elemDefault);
 
         const expected = Object.assign({}, returnedFromService);
@@ -136,6 +142,7 @@ describe('Service Tests', () => {
             label: 'BBBBBB',
             desc: 'BBBBBB',
             fakeNumber: 1,
+            someFaker: 'BBBBBB',
           },
           elemDefault,
         );

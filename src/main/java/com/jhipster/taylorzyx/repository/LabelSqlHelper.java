@@ -14,6 +14,7 @@ public class LabelSqlHelper {
         columns.add(Column.aliased("label", table, columnPrefix + "_label"));
         columns.add(Column.aliased("jhi_desc", table, columnPrefix + "_jhi_desc"));
         columns.add(Column.aliased("fake_number", table, columnPrefix + "_fake_number"));
+        columns.add(Column.aliased("some_faker", table, columnPrefix + "_some_faker"));
 
         return columns;
     }

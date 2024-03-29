@@ -1,7 +1,9 @@
 package com.jhipster.taylorzyx.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -23,6 +25,13 @@ public class Project implements Serializable {
 
     @Column("description")
     private String description;
+
+    @Transient
+    @JsonIgnoreProperties(value = { "products" }, allowSetters = true)
+    private Team owner;
+
+    @Column("owner_id")
+    private Long ownerId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -63,6 +72,28 @@ public class Project implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Team getOwner() {
+        return this.owner;
+    }
+
+    public void setOwner(Team team) {
+        this.owner = team;
+        this.ownerId = team != null ? team.getId() : null;
+    }
+
+    public Project owner(Team team) {
+        this.setOwner(team);
+        return this;
+    }
+
+    public Long getOwnerId() {
+        return this.ownerId;
+    }
+
+    public void setOwnerId(Long team) {
+        this.ownerId = team;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

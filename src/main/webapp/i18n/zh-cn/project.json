@@ -19,7 +19,8 @@
       },
       "id": "ID",
       "name": "Name",
-      "description": "Description"
+      "description": "Description",
+      "owner": "Owner"
     }
   }
 }

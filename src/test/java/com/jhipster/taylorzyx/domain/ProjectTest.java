@@ -1,6 +1,7 @@
 package com.jhipster.taylorzyx.domain;
 
 import static com.jhipster.taylorzyx.domain.ProjectTestSamples.*;
+import static com.jhipster.taylorzyx.domain.TeamTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.jhipster.taylorzyx.web.rest.TestUtil;
@@ -20,5 +21,17 @@ class ProjectTest {
 
         project2 = getProjectSample2();
         assertThat(project1).isNotEqualTo(project2);
+    }
+
+    @Test
+    void ownerTest() throws Exception {
+        Project project = getProjectRandomSampleGenerator();
+        Team teamBack = getTeamRandomSampleGenerator();
+
+        project.setOwner(teamBack);
+        assertThat(project.getOwner()).isEqualTo(teamBack);
+
+        project.owner(null);
+        assertThat(project.getOwner()).isNull();
     }
 }

@@ -110,7 +110,6 @@ describe('Service Tests', () => {
         const patchObject = Object.assign(
           {
             name: 'BBBBBB',
-            description: 'BBBBBB',
           },
           new Project(),
         );

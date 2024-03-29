@@ -57,5 +57,9 @@ public class ProjectAsserts {
      * @param expected the expected entity
      * @param actual the actual entity
      */
-    public static void assertProjectUpdatableRelationshipsEquals(Project expected, Project actual) {}
+    public static void assertProjectUpdatableRelationshipsEquals(Project expected, Project actual) {
+        assertThat(expected)
+            .as("Verify Project relationships")
+            .satisfies(e -> assertThat(e.getOwner()).as("check owner").isEqualTo(actual.getOwner()));
+    }
 }

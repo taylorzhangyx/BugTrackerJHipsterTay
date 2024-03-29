@@ -14,6 +14,7 @@ public class ProjectSqlHelper {
         columns.add(Column.aliased("name", table, columnPrefix + "_name"));
         columns.add(Column.aliased("description", table, columnPrefix + "_description"));
 
+        columns.add(Column.aliased("owner_id", table, columnPrefix + "_owner_id"));
         return columns;
     }
 }

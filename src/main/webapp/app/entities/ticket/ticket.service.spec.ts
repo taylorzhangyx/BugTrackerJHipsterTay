@@ -133,9 +133,8 @@ describe('Service Tests', () => {
       it('should partial update a Ticket', async () => {
         const patchObject = Object.assign(
           {
-            title: 'BBBBBB',
-            description: 'BBBBBB',
-            dueDate: dayjs(currentDate).format(DATE_FORMAT),
+            done: true,
+            newEntity: 'BBBBBB',
           },
           new Ticket(),
         );

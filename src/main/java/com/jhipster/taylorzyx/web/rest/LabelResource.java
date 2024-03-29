@@ -155,6 +155,9 @@ public class LabelResource {
                         if (label.getFakeNumber() != null) {
                             existingLabel.setFakeNumber(label.getFakeNumber());
                         }
+                        if (label.getSomeFaker() != null) {
+                            existingLabel.setSomeFaker(label.getSomeFaker());
+                        }
 
                         return existingLabel;
                     })

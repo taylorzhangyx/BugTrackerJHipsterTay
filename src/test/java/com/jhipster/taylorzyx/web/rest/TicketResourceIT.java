@@ -387,12 +387,7 @@ class TicketResourceIT {
         Ticket partialUpdatedTicket = new Ticket();
         partialUpdatedTicket.setId(ticket.getId());
 
-        partialUpdatedTicket
-            .title(UPDATED_TITLE)
-            .description(UPDATED_DESCRIPTION)
-            .dueDate(UPDATED_DUE_DATE)
-            .newEntity(UPDATED_NEW_ENTITY)
-            .someInfo(UPDATED_SOME_INFO);
+        partialUpdatedTicket.description(UPDATED_DESCRIPTION).done(UPDATED_DONE).newEntity(UPDATED_NEW_ENTITY).someInfo(UPDATED_SOME_INFO);
 
         webTestClient
             .patch()

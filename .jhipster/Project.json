@@ -15,6 +15,14 @@
   ],
   "incrementalChangelog": false,
   "name": "Project",
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "owner",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
   "searchEngine": "no"
 }

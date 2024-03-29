@@ -19,6 +19,10 @@
     {
       "fieldName": "fakeNumber",
       "fieldType": "Integer"
+    },
+    {
+      "fieldName": "someFaker",
+      "fieldType": "String"
     }
   ],
   "incrementalChangelog": false,

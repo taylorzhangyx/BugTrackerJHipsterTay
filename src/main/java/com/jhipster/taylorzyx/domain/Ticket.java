@@ -44,6 +44,7 @@ public class Ticket implements Serializable {
     private String someInfo;
 
     @Transient
+    @JsonIgnoreProperties(value = { "owner" }, allowSetters = true)
     private Project project;
 
     @Transient

@@ -34,6 +34,9 @@ public class Label implements Serializable {
     @Column("fake_number")
     private Integer fakeNumber;
 
+    @Column("some_faker")
+    private String someFaker;
+
     @Transient
     @JsonIgnoreProperties(value = { "project", "assignedTo", "labels" }, allowSetters = true)
     private Set<Ticket> tickets = new HashSet<>();
@@ -90,6 +93,19 @@ public class Label implements Serializable {
 
     public void setFakeNumber(Integer fakeNumber) {
         this.fakeNumber = fakeNumber;
+    }
+
+    public String getSomeFaker() {
+        return this.someFaker;
+    }
+
+    public Label someFaker(String someFaker) {
+        this.setSomeFaker(someFaker);
+        return this;
+    }
+
+    public void setSomeFaker(String someFaker) {
+        this.someFaker = someFaker;
     }
 
     public Set<Ticket> getTickets() {
@@ -150,6 +166,7 @@ public class Label implements Serializable {
             ", label='" + getLabel() + "'" +
             ", desc='" + getDesc() + "'" +
             ", fakeNumber=" + getFakeNumber() +
+            ", someFaker='" + getSomeFaker() + "'" +
             "}";
     }
 }

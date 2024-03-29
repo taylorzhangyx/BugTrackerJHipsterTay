@@ -36,6 +36,19 @@
               v-model="v$.description.$model"
             />
           </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="t$('jhipsterDemoApp.project.owner')" for="project-owner"></label>
+            <select class="form-control" id="project-owner" data-cy="owner" name="owner" v-model="project.owner">
+              <option v-bind:value="null"></option>
+              <option
+                v-bind:value="project.owner && teamOption.id === project.owner.id ? project.owner : teamOption"
+                v-for="teamOption in teams"
+                :key="teamOption.id"
+              >
+                {{ teamOption.id }}
+              </option>
+            </select>
+          </div>
         </div>
         <div>
           <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" v-on:click="previousState()">
