@@ -12,6 +12,7 @@ import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -201,7 +202,12 @@ public class TicketResource {
         log.debug("REST request to get a page of Tickets");
         return ticketRepository
             .count()
-            .zipWith(ticketRepository.findAllBy(pageable).collectList())
+            .zipWith(
+                ticketRepository
+                    // .findAllBy(pageable)
+                    .findAllByOrderByDueDateAsc(pageable)
+                    .collectList()
+            )
             .map(
                 countWithEntities ->
                     ResponseEntity.ok()
@@ -214,6 +220,23 @@ public class TicketResource {
                         .body(countWithEntities.getT2())
             );
     }
+
+    // @GetMapping("/tickets")
+    // public ResponseEntity<List<Ticket>> getAllTickets(Pageable pageable,
+    // @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    // log.debug("REST request to get a page of Tickets");
+    // Page<Ticket> page;
+    // if (eagerload) {
+    // page = ticketRepository.findAllWithEagerRelationships(pageable);
+    // } else {
+    // //page = ticketRepository.findAll(pageable);
+    // page = ticketRepository.findAllByOrderByDueDateAsc(pageable);
+    // }
+    // HttpHeaders headers =
+    // PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(),
+    // page);
+    // return ResponseEntity.ok().headers(headers).body(page.getContent());
+    // }
 
     /**
      * {@code GET  /tickets/:id} : get the "id" ticket.

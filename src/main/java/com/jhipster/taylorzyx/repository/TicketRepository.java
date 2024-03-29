@@ -1,6 +1,7 @@
 package com.jhipster.taylorzyx.repository;
 
 import com.jhipster.taylorzyx.domain.Ticket;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
@@ -41,6 +42,8 @@ public interface TicketRepository extends ReactiveCrudRepository<Ticket, Long>, 
         "SELECT entity.* FROM ticket entity JOIN rel_ticket__label joinTable ON entity.id = joinTable.label_id WHERE joinTable.label_id = :id"
     )
     Flux<Ticket> findByLabel(Long id);
+
+    Flux<Ticket> findAllByOrderByDueDateAsc(Pageable pageable);
 
     @Override
     <S extends Ticket> Mono<S> save(S entity);
