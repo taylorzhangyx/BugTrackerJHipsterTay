@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20240329124631"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dueDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "done",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "Ticket",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "project",
+      "relationshipName": "project",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "ticket",
+      "relationshipName": "assignedTo",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipWithBuiltInEntity": true
+    },
+    {
+      "otherEntityField": "label",
+      "otherEntityName": "label",
+      "otherEntityRelationshipName": "ticket",
+      "relationshipName": "label",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}
