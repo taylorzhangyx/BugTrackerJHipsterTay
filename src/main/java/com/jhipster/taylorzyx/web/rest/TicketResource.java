@@ -20,6 +20,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -250,6 +252,7 @@ public class TicketResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole(T(com.jhipster.taylorzyx.security.AuthoritiesConstants).ADMIN)")
     public Mono<ResponseEntity<Void>> deleteTicket(@PathVariable("id") Long id) {
         log.debug("REST request to delete Ticket : {}", id);
         return ticketRepository
