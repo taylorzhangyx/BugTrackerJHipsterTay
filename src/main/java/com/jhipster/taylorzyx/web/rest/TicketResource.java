@@ -221,23 +221,6 @@ public class TicketResource {
             );
     }
 
-    // @GetMapping("/tickets")
-    // public ResponseEntity<List<Ticket>> getAllTickets(Pageable pageable,
-    // @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
-    // log.debug("REST request to get a page of Tickets");
-    // Page<Ticket> page;
-    // if (eagerload) {
-    // page = ticketRepository.findAllWithEagerRelationships(pageable);
-    // } else {
-    // //page = ticketRepository.findAll(pageable);
-    // page = ticketRepository.findAllByOrderByDueDateAsc(pageable);
-    // }
-    // HttpHeaders headers =
-    // PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(),
-    // page);
-    // return ResponseEntity.ok().headers(headers).body(page.getContent());
-    // }
-
     /**
      * {@code GET  /tickets/:id} : get the "id" ticket.
      *
