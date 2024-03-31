@@ -2,6 +2,7 @@ package com.jhipster.taylorzyx.web.rest;
 
 import com.jhipster.taylorzyx.domain.Ticket;
 import com.jhipster.taylorzyx.repository.TicketRepository;
+import com.jhipster.taylorzyx.service.UserService;
 import com.jhipster.taylorzyx.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -45,15 +46,20 @@ public class TicketResource {
 
     private final TicketRepository ticketRepository;
 
-    public TicketResource(TicketRepository ticketRepository) {
+    private final UserService userService;
+
+    public TicketResource(TicketRepository ticketRepository, UserService userService) {
         this.ticketRepository = ticketRepository;
+        this.userService = userService;
     }
 
     /**
      * {@code POST  /tickets} : Create a new ticket.
      *
      * @param ticket the ticket to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new ticket, or with status {@code 400 (Bad Request)} if the ticket has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new ticket, or with status {@code 400 (Bad Request)} if the
+     *         ticket has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("")
@@ -78,11 +84,13 @@ public class TicketResource {
     /**
      * {@code PUT  /tickets/:id} : Updates an existing ticket.
      *
-     * @param id the id of the ticket to save.
+     * @param id     the id of the ticket to save.
      * @param ticket the ticket to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated ticket,
-     * or with status {@code 400 (Bad Request)} if the ticket is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the ticket couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated ticket,
+     *         or with status {@code 400 (Bad Request)} if the ticket is not valid,
+     *         or with status {@code 500 (Internal Server Error)} if the ticket
+     *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/{id}")
@@ -118,14 +126,17 @@ public class TicketResource {
     }
 
     /**
-     * {@code PATCH  /tickets/:id} : Partial updates given fields of an existing ticket, field will ignore if it is null
+     * {@code PATCH  /tickets/:id} : Partial updates given fields of an existing
+     * ticket, field will ignore if it is null
      *
-     * @param id the id of the ticket to save.
+     * @param id     the id of the ticket to save.
      * @param ticket the ticket to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated ticket,
-     * or with status {@code 400 (Bad Request)} if the ticket is not valid,
-     * or with status {@code 404 (Not Found)} if the ticket is not found,
-     * or with status {@code 500 (Internal Server Error)} if the ticket couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated ticket,
+     *         or with status {@code 400 (Bad Request)} if the ticket is not valid,
+     *         or with status {@code 404 (Not Found)} if the ticket is not found,
+     *         or with status {@code 500 (Internal Server Error)} if the ticket
+     *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -188,10 +199,12 @@ public class TicketResource {
     /**
      * {@code GET  /tickets} : get all the tickets.
      *
-     * @param pageable the pagination information.
-     * @param request a {@link ServerHttpRequest} request.
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tickets in body.
+     * @param pageable  the pagination information.
+     * @param request   a {@link ServerHttpRequest} request.
+     * @param eagerload flag to eager load entities from relationships (This is
+     *                  applicable for many-to-many).
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of tickets in body.
      */
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<List<Ticket>>> getAllTickets(
@@ -202,12 +215,7 @@ public class TicketResource {
         log.debug("REST request to get a page of Tickets");
         return ticketRepository
             .count()
-            .zipWith(
-                ticketRepository
-                    // .findAllBy(pageable)
-                    .findAllByOrderByDueDateAsc(pageable)
-                    .collectList()
-            )
+            .zipWith(ticketRepository.findAllByOrderByDueDateAsc(pageable).collectList())
             .map(
                 countWithEntities ->
                     ResponseEntity.ok()
@@ -225,7 +233,8 @@ public class TicketResource {
      * {@code GET  /tickets/:id} : get the "id" ticket.
      *
      * @param id the id of the ticket to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the ticket, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the ticket, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/{id}")
     public Mono<ResponseEntity<Ticket>> getTicket(@PathVariable("id") Long id) {
@@ -251,6 +260,57 @@ public class TicketResource {
                         .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
                         .build()
                 )
+            );
+    }
+
+    /**
+     * {@code GET  /tickets/self} : get all the tickets assigned to the current
+     * user.
+     *
+     * @param pageable  the pagination information.
+     * @param request   a {@link ServerHttpRequest} request.
+     * @param eagerload flag to eager load entities from relationships (This is
+     *                  applicable for many-to-many).
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of tickets in body.
+     */
+    @GetMapping("/self")
+    public Mono<ResponseEntity<List<Ticket>>> getAllSelfTickets(
+        @org.springdoc.core.annotations.ParameterObject Pageable pageable,
+        ServerHttpRequest request,
+        @RequestParam(name = "eagerload", required = false, defaultValue = "false") boolean eagerload
+    ) {
+        log.debug("REST request to get a page of user's Tickets");
+        // Page<Ticket> page;
+        // if (eagerload) {
+        // page = ticketRepository.findAllWithEagerRelationships(pageable);
+        // } else {
+        // page = new PageImpl<>(ticketRepository.findByAssignedToIsCurrentUser());
+        // }
+        // HttpHeaders headers = PaginationUtil
+        // .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(),
+        // page);
+        // return ResponseEntity.ok().headers(headers).body(page.getContent());
+
+        return ticketRepository
+            .count()
+            .zipWith(
+                userService
+                    .getUserWithAuthorities()
+                    .flatMap(user -> {
+                        return ticketRepository.findByAssignedToIsCurrentUser(user.getLogin()).collectList();
+                    })
+            )
+            .map(
+                countWithEntities ->
+                    ResponseEntity.ok()
+                        .headers(
+                            PaginationUtil.generatePaginationHttpHeaders(
+                                ForwardedHeaderUtils.adaptFromForwardedHeaders(request.getURI(), request.getHeaders()),
+                                new PageImpl<>(countWithEntities.getT2(), pageable, countWithEntities.getT1())
+                            )
+                        )
+                        .body(countWithEntities.getT2())
             );
     }
 }

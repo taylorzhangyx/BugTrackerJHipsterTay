@@ -56,6 +56,9 @@ public interface TicketRepository extends ReactiveCrudRepository<Ticket, Long>, 
 
     @Override
     Mono<Void> deleteById(Long id);
+
+    @Query("select * from Ticket ticket JOIN jhi_user userTable on ticket.assigned_to_id = userTable.id where userTable.login = :login")
+    Flux<Ticket> findByAssignedToIsCurrentUser(String login);
 }
 
 interface TicketRepositoryInternal {
